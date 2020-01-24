@@ -6,7 +6,7 @@ before_install: #build dev version
   - docker build -t calvinj89/react-test -f ./client/Dockerfile.dev ./client
   
 script: #testing section
-  - docker run calvinj89/react-test npm test -- --coverage
+  - docker run -e CI=true calvinj89/react-test npm test
  
 after_succes: #build production version
  - docker build -t calvinj89/multi-client ./client
