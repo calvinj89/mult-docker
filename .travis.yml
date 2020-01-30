@@ -8,7 +8,7 @@ before_install: #build dev version
 script: #testing section
   - docker run -e CI=true calvinj89/react-test npm test
  
-after_succes: #build production version
+after_succes: #build production versions
  - docker build -t calvinj89/multi-client ./client
  - docker build -t calvinj89/multi-nginx  ./nginx
  - docker build -t calvinj89/multi-server ./server
