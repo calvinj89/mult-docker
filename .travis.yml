@@ -8,7 +8,7 @@ before_install: #build dev version
 script: #testing section
   - docker run -e CI=true calvinj89/react-test npm test
  
-after_succes: #build production versions
+after_success: #build production version
  - docker build -t calvinj89/multi-client ./client
  - docker build -t calvinj89/multi-nginx  ./nginx
  - docker build -t calvinj89/multi-server ./server
@@ -21,18 +21,18 @@ after_succes: #build production versions
  - docker push calvinj89/multi-server
  - docker push calvinj89/multi-worker
  
- deploy:
-   provider: elasticbeanstalk
-   region: us-east-1
-   app: multi-docker
-   env: MultiDocker-env
-   bucket_name: elasticbeanstalk-us-east-1-006431674947
-   bucket_path: docker-multi-client
-   on:
-     branch: master
-   access_key_id: $AWS_ACCESS_KEY
-   secret_access_key:
-     secure: $AWS_SECRET_KEY
+deploy:
+ provider: elasticbeanstalk
+ region: us-east-1
+ app: multi-docker
+ env: MultiDocker-env
+ bucket_name: elasticbeanstalk-us-east-1-006431674947
+ bucket_path: docker-multi-client
+on:
+ branch: master
+ access_key_id: $AWS_ACCESS_KEY
+ secret_access_key:
+ secure: $AWS_SECRET_KEY
    
    
  
