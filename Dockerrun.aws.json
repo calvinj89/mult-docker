@@ -1,0 +1,35 @@
+{
+  "AWSEBDockerrunVersion":2,
+  "containerDefinitions":[
+    {
+	  "name": "client", 
+	  "image": "calivnj89/multi-client",
+	  "hostname": "client", 
+	  "essential": false 
+	},
+	{
+	  "name": "sever",
+	  "image": "calvinj89/multi-sever",
+	  "hostname": "api", 
+	  "essential": false
+	},
+	{
+	  "name": "worker",
+	  "image": "calvinj89/multi-worker",
+	  "hostname": "worker",
+	  "essential": false
+	},
+	{
+	  "name": "nginx",
+	  "image": "calivnj89/multi-nginx",
+	  "hostname": "nginx",
+	  "portMapping": [
+	    {
+		  "hostPort": 80,
+		  "containerPort": 80
+		}
+	  ],
+	  "links": ["client", "server"] 
+	}
+  ]  
+}
